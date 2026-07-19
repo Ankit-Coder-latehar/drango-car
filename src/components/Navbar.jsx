@@ -72,7 +72,7 @@ const Navbar = () => {
       </div>
 
       {/* Main navigation */}
-      <nav className="bg-zinc-950/95 sticky top-0 z-50 border-b border-zinc-900 px-4 py-4 md:px-8 flex justify-between items-center">
+      <nav className="navbar-concrete-bg sticky top-0 z-50 border-b border-zinc-900 px-4 py-4 md:px-8 flex justify-between items-center">
         {/* Logo */}
         <Link to="/" className="flex items-center gap-2 group">
           <div className="relative">
