@@ -1,175 +1,140 @@
-import React, { useState } from 'react';
-import { Award, Users, CheckCircle, TrendingUp, DollarSign, Send } from 'lucide-react';
+import React, { useEffect } from 'react';
+import { Award, Users, TrendingUp, ShieldCheck, Sparkles, CheckCircle2, ChevronRight, Star, Cpu, ArrowUpRight } from 'lucide-react';
+import Thar3DStage from '../components/franchise/Thar3DStage';
+import FranchiseRoiCalculator from '../components/franchise/FranchiseRoiCalculator';
+import FranchiseMap from '../components/franchise/FranchiseMap';
+import TharTransformation from '../components/franchise/TharTransformation';
+import FranchiseTiers from '../components/franchise/FranchiseTiers';
+import FranchiseForm from '../components/franchise/FranchiseForm';
+import { playClickSound } from '../utils/soundEffects';
 
 const Franchise = () => {
-  const [formSubmitted, setFormSubmitted] = useState(false);
-  const [loading, setLoading] = useState(false);
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setLoading(true);
-    setTimeout(() => {
-      setLoading(false);
-      setFormSubmitted(true);
-    }, 1500);
-  };
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
-    <div className="bg-[#0b0b0c] text-white font-sans">
-      {/* Header */}
-      <section className="relative py-20 bg-zinc-950 border-b border-zinc-900 text-center">
-        <div className="max-w-4xl mx-auto px-4">
-          <h1 className="text-4xl md:text-6xl font-black uppercase tracking-wider mb-4">FRANCHISE OPPORTUNITIES</h1>
-          <p className="text-zinc-400 text-sm md:text-base max-w-xl mx-auto">
-            Partner with India's fastest growing premium auto care brand. Build a profitable detailing business under Drango's mentorship.
-          </p>
-        </div>
-      </section>
+    <div className="min-h-screen bg-[#070708] text-white font-sans selection:bg-red-600 selection:text-white overflow-hidden">
+      {/* Background Decorative Ambient Flares */}
+      <div className="fixed top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[600px] bg-red-600/10 rounded-full blur-[140px] pointer-events-none z-0" />
+      <div className="fixed bottom-0 right-0 w-[800px] h-[600px] bg-amber-600/5 rounded-full blur-[160px] pointer-events-none z-0" />
 
-      {/* Why Franchise */}
-      <section className="py-20 max-w-7xl mx-auto px-4 md:px-8">
-        <div className="text-center max-w-2xl mx-auto mb-16 space-y-4">
-          <span className="text-red-500 font-bold tracking-widest text-xs uppercase">BUSINESS MODEL</span>
-          <h2 className="text-3xl md:text-5xl font-black uppercase text-white tracking-wide">WHY PARTNER WITH US</h2>
-        </div>
+      <div className="relative z-10 space-y-20 md:space-y-32 pb-24">
+        {/* HERO SECTION */}
+        <section className="relative pt-16 md:pt-24 px-4 max-w-7xl mx-auto text-center space-y-8">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-red-600/10 border border-red-500/30 text-red-500 text-xs font-mono font-bold tracking-widest uppercase animate-pulse">
+            <Sparkles size={14} />
+            <span>AWARD-WINNING FRANCHISE NETWORK</span>
+          </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {[
-            {
-              icon: Award,
-              title: "Massive Brand Equity",
-              desc: "Leverage Drango's enormous digital presence (2.3M+ YouTube subscribers) that drives customer trust and initial footfalls from day one."
-            },
-            {
-              icon: TrendingUp,
-              title: "High ROI Potential",
-              desc: "Detailing and premium coatings are high-margin services. Benefit from our optimized product supply chains and proprietary operations."
-            },
-            {
-              icon: Users,
-              title: "Training & Tech Support",
-              desc: "Complete hands-on training at Pune HQ for your detailers, painters, and managers, along with site setup blueprints and marketing support."
-            }
-          ].map((item, idx) => {
-            const Icon = item.icon;
-            return (
-              <div key={idx} className="bg-zinc-900 border border-zinc-850 p-8 rounded-xl space-y-4">
-                <div className="w-12 h-12 bg-red-600/10 text-red-500 flex items-center justify-center rounded-lg">
-                  <Icon size={24} />
-                </div>
-                <h3 className="text-xl font-bold uppercase text-white">{item.title}</h3>
-                <p className="text-zinc-400 text-sm leading-relaxed">{item.desc}</p>
+          <div className="space-y-4 max-w-5xl mx-auto">
+            <h1 className="text-4xl sm:text-6xl lg:text-7xl font-black uppercase tracking-tight leading-[1.05]">
+              OWN A HIGH-MARGIN <span className="bg-gradient-to-r from-red-500 via-red-400 to-amber-500 bg-clip-text text-transparent">DRANGO AUTO CARE</span> FRANCHISE
+            </h1>
+            <p className="text-zinc-400 text-sm md:text-lg max-w-3xl mx-auto leading-relaxed">
+              Partner with India’s leading auto detailing & Mahindra Thar modification powerhouse. Build a lucrative 45%+ margin auto business under Drango's nationwide brand authority.
+            </p>
+          </div>
+
+          {/* Quick Metric Badges */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto pt-4">
+            {[
+              { label: 'ACTIVE OUTLETS', val: '45+ Outlets', sub: 'Across 18 States' },
+              { label: 'THAR MARKET SHARE', val: '#1 Specialist', sub: 'Dedicated Thar Armor' },
+              { label: 'AVG ANNUAL MARGIN', val: '45% Net ROI', sub: '12-18 Mos Payback' },
+              { label: 'YOUTUBE AUDIENCE', val: '2.3M+ Fans', sub: 'Organic Footfalls' }
+            ].map((stat, idx) => (
+              <div key={idx} className="bg-zinc-900/80 border border-zinc-850 p-4 rounded-2xl text-center backdrop-blur">
+                <span className="text-[10px] font-mono text-zinc-400 uppercase tracking-widest block">{stat.label}</span>
+                <span className="text-xl md:text-2xl font-black text-white font-mono block my-1">{stat.val}</span>
+                <span className="text-[11px] text-red-400">{stat.sub}</span>
               </div>
-            );
-          })}
-        </div>
-      </section>
-
-      {/* Franchise Form & Requirements */}
-      <section className="py-20 bg-zinc-950 border-t border-zinc-900">
-        <div className="max-w-7xl mx-auto px-4 md:px-8 grid grid-cols-1 lg:grid-cols-12 gap-12">
-          <div className="lg:col-span-6 space-y-6">
-            <span className="text-red-500 font-bold tracking-widest text-xs uppercase">CRITERIA</span>
-            <h2 className="text-3xl md:text-5xl font-black uppercase text-white tracking-wide">FRANCHISEE REQUIREMENTS</h2>
-            
-            <ul className="space-y-4">
-              {[
-                "Minimum space requirement of 2,500 to 4,000 sq ft.",
-                "Prime location with high visibility and easy vehicle access.",
-                "Investment capacity of ₹40L - ₹60L (varies by city and tier).",
-                "Passion for cars and adherence to Drango's strict quality guidelines.",
-                "Strong local marketing and customer relationship management skills."
-              ].map((pt, idx) => (
-                <li key={idx} className="flex gap-3 text-sm text-zinc-300">
-                  <CheckCircle size={18} className="text-red-500 shrink-0 mt-0.5" />
-                  <span>{pt}</span>
-                </li>
-              ))}
-            </ul>
+            ))}
           </div>
 
-          <div className="lg:col-span-6">
-            <div className="bg-zinc-900 border border-zinc-800 p-6 md:p-10 rounded-xl">
-              {formSubmitted ? (
-                <div className="text-center py-12 space-y-4">
-                  <CheckCircle size={64} className="text-green-500 mx-auto" />
-                  <h3 className="text-2xl font-bold text-white">Application Submitted!</h3>
-                  <p className="text-zinc-400 text-sm">
-                    Thank you for your interest. Our Franchise Development team will review your application and contact you soon.
-                  </p>
+          {/* 3D MAHINDRA THAR INTERACTIVE STAGE */}
+          <div className="pt-8">
+            <Thar3DStage />
+          </div>
+        </section>
+
+        {/* WHY PARTNER WITH DRANGO */}
+        <section className="max-w-7xl mx-auto px-4 md:px-8 space-y-12">
+          <div className="text-center max-w-2xl mx-auto space-y-3">
+            <span className="text-red-500 font-mono text-xs font-bold uppercase tracking-widest">
+              BUSINESS ADVANTAGE
+            </span>
+            <h2 className="text-3xl md:text-5xl font-black uppercase text-white tracking-wide">
+              WHY DRANGO IS THE #1 CHOICE
+            </h2>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {[
+              {
+                icon: Award,
+                title: "Enormous Brand Footfall",
+                desc: "Drango's massive digital presence (2.3M+ YouTube Subscribers) guarantees instant customer trust and queue-up bookings from day one.",
+                highlight: "Zero Marketing Guesswork"
+              },
+              {
+                icon: Cpu,
+                title: "Thar & SUV Monopoly",
+                desc: "Mahindra Thar owners spend ₹1.5L to ₹4L on modifications & PPF. We equip your franchise with proprietary Thar armor packages.",
+                highlight: "Highest Ticket Size in India"
+              },
+              {
+                icon: Users,
+                title: "Hands-on HQ Support",
+                desc: "14-day mandatory training program at Pune HQ for detailers, painters, and managers, plus site blueprinting and supply chain support.",
+                highlight: "Full Operations Playbook"
+              }
+            ].map((item, idx) => {
+              const Icon = item.icon;
+              return (
+                <div 
+                  key={idx} 
+                  className="bg-gradient-to-b from-zinc-900 to-zinc-950 border border-zinc-800 p-8 rounded-3xl space-y-4 hover:border-red-500/50 transition-all duration-300 group shadow-xl"
+                >
+                  <div className="w-14 h-14 bg-red-600/10 text-red-500 flex items-center justify-center rounded-2xl group-hover:scale-110 transition-transform">
+                    <Icon size={28} />
+                  </div>
+                  <span className="text-[10px] font-mono text-red-400 font-bold uppercase tracking-widest block">
+                    {item.highlight}
+                  </span>
+                  <h3 className="text-xl font-black uppercase text-white">{item.title}</h3>
+                  <p className="text-zinc-400 text-xs md:text-sm leading-relaxed">{item.desc}</p>
                 </div>
-              ) : (
-                <form onSubmit={handleSubmit} className="space-y-6">
-                  <h3 className="text-xl font-bold uppercase text-white mb-4">Franchise Enquiry Form</h3>
-                  
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <input 
-                      type="text" 
-                      placeholder="Applicant Name *" 
-                      required 
-                      className="w-full bg-zinc-950 border border-zinc-800 rounded p-3 text-sm focus:outline-none focus:border-red-600"
-                    />
-                    <input 
-                      type="tel" 
-                      placeholder="Phone Number *" 
-                      required 
-                      className="w-full bg-zinc-950 border border-zinc-800 rounded p-3 text-sm focus:outline-none focus:border-red-600"
-                    />
-                  </div>
-
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <input 
-                      type="email" 
-                      placeholder="Email Address *" 
-                      required 
-                      className="w-full bg-zinc-950 border border-zinc-800 rounded p-3 text-sm focus:outline-none focus:border-red-600"
-                    />
-                    <input 
-                      type="text" 
-                      placeholder="Proposed City/State *" 
-                      required 
-                      className="w-full bg-zinc-950 border border-zinc-800 rounded p-3 text-sm focus:outline-none focus:border-red-600"
-                    />
-                  </div>
-
-                  <div>
-                    <select className="w-full bg-zinc-950 border border-zinc-800 rounded p-3 text-sm focus:outline-none focus:border-red-600">
-                      <option>Investment Budget Capability *</option>
-                      <option>₹30 Lakhs - ₹40 Lakhs</option>
-                      <option>₹40 Lakhs - ₹60 Lakhs</option>
-                      <option>₹60 Lakhs - ₹80 Lakhs</option>
-                      <option>Above ₹80 Lakhs</option>
-                    </select>
-                  </div>
-
-                  <div>
-                    <textarea 
-                      placeholder="Tell us about your background and if you own a property/space..." 
-                      rows={4} 
-                      className="w-full bg-zinc-950 border border-zinc-800 rounded p-3 text-sm focus:outline-none focus:border-red-600"
-                    />
-                  </div>
-
-                  <button 
-                    type="submit" 
-                    disabled={loading}
-                    className="w-full bg-red-600 hover:bg-red-700 text-white font-bold tracking-widest text-xs py-4 rounded transition-colors flex items-center justify-center gap-2"
-                  >
-                    {loading ? (
-                      <span className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></span>
-                    ) : (
-                      <>
-                        <span>SUBMIT APPLICATION</span>
-                        <Send size={14} />
-                      </>
-                    )}
-                  </button>
-                </form>
-              )}
-            </div>
+              );
+            })}
           </div>
-        </div>
-      </section>
+        </section>
+
+        {/* BEFORE & AFTER THAR TRANSFORMATION SHOWCASE */}
+        <section className="max-w-7xl mx-auto px-4 md:px-8">
+          <TharTransformation />
+        </section>
+
+        {/* FRANCHISE ROI CALCULATOR */}
+        <section className="max-w-7xl mx-auto px-4 md:px-8">
+          <FranchiseRoiCalculator />
+        </section>
+
+        {/* FRANCHISE TIERS */}
+        <section className="max-w-7xl mx-auto px-4 md:px-8">
+          <FranchiseTiers />
+        </section>
+
+        {/* NATIONWIDE NETWORK MAP */}
+        <section className="max-w-7xl mx-auto px-4 md:px-8">
+          <FranchiseMap />
+        </section>
+
+        {/* GAMIFIED MULTI-STEP APPLICATION FORM */}
+        <section className="max-w-7xl mx-auto px-4 md:px-8">
+          <FranchiseForm />
+        </section>
+      </div>
     </div>
   );
 };

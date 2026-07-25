@@ -17,15 +17,14 @@ const Loader = ({ onComplete }) => {
   }, [onComplete]);
 
   return (
-    <div className={`fixed inset-0 z-50 bg-[#070708] flex flex-col items-center justify-center transition-opacity duration-700 select-none ${
-      fade ? 'opacity-0 pointer-events-none' : 'opacity-100'
-    }`}>
+    <div className={`fixed inset-0 z-50 bg-[#070708] flex flex-col items-center justify-center transition-opacity duration-700 select-none ${fade ? 'opacity-0 pointer-events-none' : 'opacity-100'
+      }`}>
       {/* Background Glow */}
       <div className="absolute w-[500px] h-[500px] bg-red-600/10 rounded-full blur-[120px] -z-10 animate-pulse"></div>
 
       {/* Animation Stage */}
       <div className="relative w-full max-w-lg h-72 flex flex-col items-center justify-center overflow-hidden">
-        
+
         {/* Falling/Flowing Ribbons */}
         <div className="absolute inset-0 pointer-events-none z-20">
           {[...Array(6)].map((_, i) => (
@@ -60,16 +59,16 @@ const Loader = ({ onComplete }) => {
 
         {/* The Driving Thar Container */}
         <div className="relative flex flex-col items-center animate-bounce-gentle">
-          
+
           {/* Thar Body Silhouette */}
           <div className="relative w-64 h-32 flex items-end justify-center">
             {/* Vector representation of a rugged Thar SUV */}
             <svg viewBox="0 0 300 120" className="w-64 h-auto drop-shadow-[0_15px_15px_rgba(239,68,68,0.2)]">
               {/* Main Body (Rugged offroader profile) */}
-              <path 
-                d="M10 90 L20 55 L55 52 L90 20 L195 20 L200 45 L250 50 L275 60 L285 75 L285 90 L260 90 L250 90 L235 90 C235 75, 195 75, 195 90 L105 90 C105 75, 65 75, 65 90 Z" 
-                fill="#1c1c1e" 
-                stroke="#ef4444" 
+              <path
+                d="M10 90 L20 55 L55 52 L90 20 L195 20 L200 45 L250 50 L275 60 L285 75 L285 90 L260 90 L250 90 L235 90 C235 75, 195 75, 195 90 L105 90 C105 75, 65 75, 65 90 Z"
+                fill="#1c1c1e"
+                stroke="#ef4444"
                 strokeWidth="3.5"
               />
               {/* Roof rack / cage */}
